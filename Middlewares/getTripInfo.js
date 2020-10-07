@@ -1,4 +1,17 @@
-
+var webdriver = require("selenium-webdriver");
+const chrome = require("selenium-webdriver/chrome");
+const firefox = require("selenium-webdriver/firefox");
+const { Builder, By, Key, until } = require("selenium-webdriver");
+var options = new chrome.Options();
+options.addArguments("--headless");
+const screen = {
+  width: 640,
+  height: 480,
+};
+let driver = new Builder()
+.forBrowser("chrome")
+.setChromeOptions(new chrome.Options().headless().windowSize(screen)) // just change with new chrome.Options().headless().windowSize(screen)
+.build();
 
   module.exports=  async function travel() {
     await driver.get(
