@@ -17,7 +17,7 @@ const screen = {
 };
 app.get("/api", (req, res) => {
     console.log("Get");
-    res.json("You dump");
+    res.json("Oops");
 });
 
 app.listen("3000", () => {
@@ -99,3 +99,4 @@ async function travel() {
     //  driver.quit();
 }
 travel();
+ 
