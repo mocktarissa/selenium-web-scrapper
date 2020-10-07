@@ -22,6 +22,7 @@ const screen = {
 app.get("/api", async (req, res) => {
   //   res.json("Oops");
   let restf = await travel();
+  res.setHeader('Content-Type', 'text/json')
   res.send(JSON.stringify(restf));
 
   //connect to the reddis client
@@ -47,7 +48,7 @@ app.listen("3000", () => {
 
 let driver = new Builder()
   .forBrowser("chrome")
-  .setChromeOptions(new chrome.Options().windowSize(screen)) // just change with new chrome.Options().headless().windowSize(screen)
+  .setChromeOptions(new chrome.Options().headless().windowSize(screen)) // just change with new chrome.Options().headless().windowSize(screen)
   .build();
 
 async function travel() {
@@ -191,5 +192,5 @@ async function travel() {
   // let id= await driver.findElement(By.id('#mainTabView:j_idt60'));
   // console.log(id);
 
-  //  driver.quit();
+    driver.quit();
 }
