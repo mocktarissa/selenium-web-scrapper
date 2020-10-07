@@ -1,0 +1,25 @@
+{
+  "name": "tcdd-web-scrapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mocktarissa/selenium-web-scrapper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mocktarissa/selenium-web-scrapper/issues"
+  },
+  "homepage": "https://github.com/mocktarissa/selenium-web-scrapper#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  }
+}
