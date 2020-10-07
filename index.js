@@ -12,6 +12,7 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 const redis = require("redis");
 // const client = redis.createClient();
 const { promisify } = require("util");
+var router = express.Router()
 
 var options = new chrome.Options();
 options.addArguments("--headless");
