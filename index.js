@@ -5,8 +5,7 @@ Useful ressource https://medium.com/@bmshamsnahid/automated-testing-with-seleniu
 */
 const app = require("express")();
 
-const redis = require("redis");
-// const client = redis.createClient();
+
 const { promisify } = require("util");
 
 var getTrips = require('./routes/getTrips');
