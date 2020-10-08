@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/mocktarissa/selenium-web-scrapper#readme",
   "dependencies": {
+    "connect-redis": "^5.0.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "nodemon": "^2.0.4",
     "redis": "^3.0.2",
-    "selenium-webdriver": "^4.0.0-alpha.7"
+    "selenium-webdriver": "^4.0.0-alpha.7",
+    "uuid": "^8.3.1"
   }
 }

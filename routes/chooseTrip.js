@@ -2,6 +2,7 @@ let express = require('express')
 let router = express.Router()
 
 const travel = require('../Middlewares/chooseTrip')
+const client = require('../Middlewares/redisClient')
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now())
@@ -13,7 +14,14 @@ router.use(express.urlencoded({
   }));
 // define main
 router.get("/", async (req, res) => {
-  await travel();
+  await travel(client);
+  req.session.destroy(function(err){
+    if(err){
+        console.log(err);
+    } else {
+        // res.redirect('/');
+    }
+});
 console.log(req.body);  
 
 

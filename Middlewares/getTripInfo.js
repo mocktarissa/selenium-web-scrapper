@@ -1,13 +1,14 @@
 var webdriver = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 const firefox = require("selenium-webdriver/firefox");
-const client = require('./redisClient');
+// const client = require('./redisClient');
 const { Builder, By, Key, until } = require("selenium-webdriver");
 var options = new chrome.Options();
 options.addArguments("--headless");
 
 
 module.exports = async function travel() {
+  try{
   const screen = {
     width: 640,
     height: 480,
@@ -19,20 +20,27 @@ module.exports = async function travel() {
   await driver.get(
     "https://ebilet.tcddtasimacilik.gov.tr/view/eybis/tnmGenel/tcddWebContent.jsf"
   );
-  await new Promise((resolve) => setTimeout(resolve, 2500));
+  await driver.executeScript(
+    " while(document.readyState!== 'complete'){console.log('trying')}await new Promise((resolve) => setTimeout(resolve, 500));"
+   );
+    
+  // await new Promise((resolve) => setTimeout(resolve, 2500));
   //origin
   await driver.findElement(By.name("nereden")).sendKeys("İstanbul(Pendik)");
   //destination
   await driver
     .findElement(By.name("trCalGid_input"))
-    .sendKeys(Key.chord(Key.CONTROL, "a"), "08.10.2020");
+    .sendKeys(Key.chord(Key.CONTROL, "a"), "09.10.2020");
   // departure date
-  await new Promise((resolve) => setTimeout(resolve, 2500));
-  await new Promise((resolve) => setTimeout(resolve, 2500));
+  // await new Promise((resolve) => setTimeout(resolve, 2500));
+  // await new Promise((resolve) => setTimeout(resolve, 2500));
   await driver.findElement(By.name("nereye")).sendKeys("Eskişehir", Key.RETURN);
   // number of traveller
   // await driver.findElement(By.name('syolcuSayisi_input')).sendKeys('1', Key.RETURN);
-  await new Promise((resolve) => setTimeout(resolve, 2500));
+  // await new Promise((resolve) => setTimeout(resolve, 2500));
+  await driver.executeScript(
+   "while(document.readyState!== 'complete'){}await new Promise((resolve) => setTimeout(resolve, 500));"
+  );
   // click the button
   //   let id = await driver.findElement(By.id("btnSeferSorgula")).click();
 
@@ -107,6 +115,12 @@ module.exports = async function travel() {
       Map that session cookie with the one from the browser driver 
       Store that mapped value in reddis  
       */
+
+
+/*
+@params 
+@author Mocktar ISSA
+ 
   // Retrieve the current cookies status
   let cook = await driver.manage().getCookies();
 // client.set("key", "value", redis.print);
@@ -120,9 +134,12 @@ module.exports = async function travel() {
     // cook = reply;
     console.log(reply);
   }); 
+*/
+ 
   // after the choice on the UI make a request to the page and then set the cookie as the one stored for that secific user
 //   driver.manage().addCookie(arg0);
-  driver.quit();
+await driver.quit();
+// (await driver).close();
   return responTripsList;
 
   // await driver.executeScript("return document.readyState;") == "complete"
@@ -176,6 +193,17 @@ module.exports = async function travel() {
   //see if the doc is where it should be
   // let id= await driver.findElement(By.id('#mainTabView:j_idt60'));
   // console.log(id);
-
+}
+catch(e){
+throw e;
+  // console.log('An error');
+  // console.log(e.name);
+  // switch(e.name){
+  //   case 'NoSuchElementError': 
+  //   case 'Error': travel(); break; 
+  //   default : return [ ];
+  // }
+  
+}
   
 };
