@@ -20,7 +20,6 @@ router.get("/", async (req, res) => {
     res.status(500);
     res.send(JSON.stringify({ Error: e.name }));
   }
-
   // For session
   //   if(req.session.key) {
   //     // if email key is sent redirect.
